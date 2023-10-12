@@ -11,7 +11,13 @@ const NavbarRoutes = ({
     const pathname = usePathname();
     const params = useParams();
 
-    const routes = [{
+    const routes = [
+        {
+            href: `/${params.storeid}`,
+            label: 'Dashboard',
+            active: pathname === `/${params.storeid}`
+        },
+        {
         href: `/${params.storeid}/settings`,
         label: 'Settings',
         active: pathname.includes('settings')
@@ -20,7 +26,7 @@ const NavbarRoutes = ({
         <nav className={cn("flex items-center space-x-4 lg:space-x-6", className)}>
             {
                 routes.map(route => <Link key={route.href} href={route.href} title={route.label} className={cn("text-sm font-medium transition-colors hover:text-primary", 
-                route.active ? "text-black dark: text-white" : "text-muted-foreground"
+                route.active ?  "text-opacity-50" : "text-black dark: text-muted-foreground" 
                 )}>{route.label}</Link>)
             }
         </nav>
